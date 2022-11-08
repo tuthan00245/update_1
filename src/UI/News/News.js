@@ -1,41 +1,43 @@
 import React,{useEffect, useState} from 'react'
 import axios from 'axios'
-import NewsAPI from '../../API/NewsAPI'
+import NewsAPI from '../../API/NewsPageAPI'
+import Pagination from "react-js-pagination";
 
 function News() {
-  const [posts,setPosts] = useState([]);
   const [DataNotice,setDataNotice] = useState([]);
-    useEffect(() => {
-        // axios.get('https://jsonplaceholder.typicode.com/posts')
-        //       .then(res =>{
-        //         console.log(res)
-        //       })
-        //       .catch(err => {
-        //         console.log(err);
-        //       })
-         (async()=>{
-          const result2 = await NewsAPI.getNewsAPI(4); 
-          setDataNotice(result2.data);
-        })();
-      })
-  return (
-    // <div>
-    //   <div>{DataNotice.title}</div>
-    //   <div>
-    //     {DataNotice.shortDescription}
-    //   </div>
-    // </div>
-    <div className="slider"> 
-      <div className="item">
-      <i class="fa-solid fa-image"></i>
-      </div>
-      <div className="item">
+  const getData = async(page)=>{
+    const result = await NewsAPI.getNewsPageAPI(page); 
+    setDataNotice(result.data);
+    console.log(DataNotice);
 
-      </div>
-      <div className="item">
-      
-      </div>
-    </div>
+  };
+  useEffect(() => { 
+    getData(1);
+  },[])
+
+  return (
+    // <div className="border-t-8 border-teal-500 bg-teal-400 p-8 inline-block">
+    <>
+      <div className="flex column-center w-3/5 pt-10 pb-10 mb-10 shadow-lg">
+        <div className="w-1/3 bg-teal-500 ">
+           
+        </div>
+        <div className="bg-yellow-500 w-2/3">
+          <div className="bg-blue-50 h-11">
+            {
+            DataNotice && DataNotice.length > 0 ?
+            DataNotice.map((item,index)=>(
+                <a href="">
+                  {item.first_name}
+                </a>
+            )) :
+            <h4>No Data Found!!</h4>
+            }
+          </div>
+        </div>
+      </div>      
+    </>
+    
   )
 }
 

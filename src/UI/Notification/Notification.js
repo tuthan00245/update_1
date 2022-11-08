@@ -34,41 +34,8 @@ function Notification() {
   return (
     <div style={{display: 'flex',flexDirection:"row"}}>
       <div className="news-left" style={{width:"50%",display: 'flex',flexDirection:"column",justifyItems:"center"}}>
-        <div style={{backgroundColor:"blue",borderRadius:"0% 48%",width:"80%"}}>
-            <div className="title" style={{display:"flex",justifyContent:"center"}}>
-              <h1 style={{color:"white",fontSize:"4rem"}}> Thông tin</h1>
-            </div>
-            {/* <ul>
-              {
-              <li>{DataNotice.id}</li>
-              }{
-              <li>{DataNotice.title}</li>
-              }
-            </ul> */}
-          </div>
-          <div style={{border: '1px',display: 'flex'}}>
-            <div style={{height:"7rem",width:"33%",margin:"20px 20px",border: '1px solid blue'}}>
-            </div>
-            <div style={{height:"7rem",width:"33%",margin:"20px 20px",border: '1px solid red'}}>
-            </div>
-            <div style={{height:"7rem",width:"33%",margin:"20px 20px",border: '1px solid green'}}>
-            </div>
-          </div>
-          <div style={{borderTop: '3px solid black',margin:"0px 10px ",}}>
-            
-          </div>
-          <div>
-            <News/>
-          </div>
-        </div>
-      <div className="col-linear" style={{borderRight:"2px solid black"}}>
-        
+        {/* <News/> */}
       </div>
-      <div className="news-right">
-
-      </div>
-      
-
     </div>
   )
 }

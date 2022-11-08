@@ -76,7 +76,7 @@ const CreateNotification = () => {
         const result2 = await NotificationAPI.getNotificationIdAPI(1);
         setNotificationGroup(result1.data);
         setNotificationIP(result2.data);
-        console.log(result2.data);
+        // console.log(result2.data);
       } catch (e) {
         console.log(e.message);
         toast.error("Có lỗi xảy ra, kiểm tra lại đường truyền", {
