@@ -7,32 +7,11 @@ import PNTPage from "../News/pagination/index"
 import Slider from "../Slider/slider"
 
 const Home = () => {
-  let mybutton = document.getElementById("myBtn");
-  function scrollFunction() {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-      mybutton.style.display = "block";
-    } else {
-      mybutton.style.display = "none";
-    }
-  }
+
+
   
   return (
     <div className="m-[2rem_4rem]">
-
-      <header>
-          <div className="news-link mt-5 bg-black w-2/12 p-1 ml-5">
-              <p></p>
-
-          </div>
-          <hr className="hr1 block h-1 border-0 border-t border-solid border-black"/>
-          <h1 className="text-center m-0 text-5xl"><span>NEWS</span>PAPER</h1>
-          <p className="ad text-center whitespace-normal mt-0 bg-black text-white w-10/12 m-auto mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, voluptatibus corporis! Quos nihil, eius similique eaque soluta cupiditate doloremque nesciunt, optio exercitationem impedit aspernatur laborum sunt voluptatibus voluptas commodi illo!</p>
-          
-          {/* <h2 className="edition">edition:01234</h2> */}
-          <hr className="hr2 block h-1 border-0 border-t border-solid border-black mt-4 "/>
-          <h2 className="date mt-5">may,5,2020</h2>
-      </header>
-
 
       <h1 className="text-center m-0 text-5xl">NEWS LIST</h1>
       
@@ -143,13 +122,13 @@ const Home = () => {
 
       <div class="zalo-container right">
 			
-				<div class="fixed"></div>
-        <span>
+				<div class="fixed "></div>
+        {/* <span>
         <img
             src="https://bobbyhadz.com/images/blog/react-usestate-dynamic-key/thumbnail.webp"
             alt="example"
           />
-        </span>
+        </span> */}
 		</div>
 
     </div>
