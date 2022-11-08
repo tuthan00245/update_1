@@ -1,5 +1,7 @@
 import React, { Component,useState,useEffect } from 'react'
-import NewsAPI from '../../API/NewsPageAPI'
+import NewsAPI from '../../API/NewsListPageAPI'
+import Loader from "../loader/Loader"
+
 
 // const NewsPage = () => {
 //   const [posts,setPosts] = useState([]);
@@ -57,8 +59,9 @@ getPaginatedData = page =>{
   this.loadData(page);
 }
 loadData = async(page) =>{
-  fetch(
+  await fetch(
     NewsAPI.getNewsPageAPI(1)
+    
     .then(res => {
         const data = res.data;
         this.setState({
@@ -67,6 +70,7 @@ loadData = async(page) =>{
             limit : data.size ? data.size : 6
         })
     })
+    .delay(1000)
   )
 }
   render() {
@@ -76,19 +80,21 @@ loadData = async(page) =>{
         {
           data && data.length > 0 ?
           data.map((item,index)=>(
-            <div className="bg-yellow-500 shadow-lg m-[0.5rem_0rem]" >
-            <div className="bg-blue-50 ">
-              <section className="container-1">
-                <div className="p-1">
-                    <h4 className="text-xl">{item.title}</h4>
-                    <p className="text-xs">{item.shortDescription}</p>
-                    <p className="text-xs text-right pt-[1rem]">{item.createdDate}</p>
+            <a href={"news/"+item.id}>
+              <div className="bg-yellow-500 shadow-lg m-[0.5rem_0rem]" >
+                <div className="bg-blue-50 ">
+                  <section className="container-1">
+                    <div className="p-1">
+                        <h4 className="text-xl">{item.title}</h4>
+                        <p className="text-xs">{item.shortDescription}</p>
+                        <p className="text-xs text-right pt-[1rem]">{item.createdDate}</p>
+                    </div>
+                  </section>
                 </div>
-              </section>
-            </div>
-          </div>
+              </div>
+            </a>
           )) :
-          <h4>No Data Found!!</h4>
+          <Loader/>
         }
       
           

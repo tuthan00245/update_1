@@ -283,6 +283,19 @@ const Header = () => {
           </div>
         </>
 
+        <header>
+          <div className="news-link mt-5 bg-black w-2/12 p-1 ml-5">
+              <p></p>
+          </div>
+          <hr className="hr1 block h-1 border-0 border-t border-solid border-black"/>
+          <h1 className="text-center m-0 text-5xl"><span>NEWS</span>PAPER</h1>
+          <p className="ad text-center whitespace-normal mt-0 bg-black m-auto mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, voluptatibus corporis! Quos nihil, eius similique eaque soluta cupiditate doloremque nesciunt, optio exercitationem impedit aspernatur laborum sunt voluptatibus voluptas commodi illo!</p>
+          
+          {/* <h2 className="edition">edition:01234</h2> */}
+          <hr className="hr2 block h-1 border-0 border-t border-solid border-black mt-4 "/>
+          
+        </header>
+
         {/* end modal */}
       </header>
     </>

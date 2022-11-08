@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import axios from 'axios';
 import PaginationComponent from "./paginationComponent";
-import NewsAPI from '../../../API/NewsPageAPI'
+import NewsAPI from '../../../API/NewsListPageAPI'
 
 class Pagination extends Component {
     state = {
