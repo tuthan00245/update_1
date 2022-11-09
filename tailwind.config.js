@@ -11,5 +11,11 @@ module.exports = {
       },
     },
   },
+  variants: {
+    extend: {
+      visibility: ["group-hover"],
+      active: ["group-hover"],
+    },
+   },
   plugins: [require("tw-elements/dist/plugin")],
 };

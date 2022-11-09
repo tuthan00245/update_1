@@ -1,16 +1,14 @@
-import React,{Component, useEffect, useState, useRef } from 'react'
-import axios from 'axios'
-import NewsAPI from '../../API/NewsAPI'
-import Loader from '../loader/Loader'
-import Pagination from "react-js-pagination";
+import React,{ useEffect, useState} from 'react'
+import NewsAPI from '../../../API/NewsAPI'
+import Loader from '../../loader/Loader'
+// import Pagination from "react-js-pagination";
 import { useParams } from 'react-router-dom';
 
 function News() {
 
   const {id} =useParams();
   const [DataNotice,setDataNotice] = useState();
-  const getData = async(id)=>{
-    const result = await fetch(NewsAPI.getNewsAPI(id)
+  const getData = async(id)=>{ await fetch(NewsAPI.getNewsAPI(id)
       .then(res => {
         const data = res.data;
         setDataNotice(data);
@@ -22,14 +20,13 @@ function News() {
     console.log(id);
     getData(id);
 
-  },[])
+  })
 
   return (
     // <div className="border-t-8 border-teal-500 bg-teal-400 p-8 inline-block">
     <div>
       {
       DataNotice ?
-          <a href="">
             <div className="w-3/4 m-[2rem_auto]">
               <div className="m-auto w-full">
                 <h1 className="text-center m-0 text-2xl">
@@ -39,7 +36,6 @@ function News() {
               <div className="border-t border-black ml-[2px]"></div>
               <p>{DataNotice.content}</p>              
             </div>
-          </a>
        :
       <Loader/>
       }    

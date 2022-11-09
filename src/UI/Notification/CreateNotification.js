@@ -1,7 +1,8 @@
 import { useFormik } from "formik";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import NotificationAPI from "../../API/NotificationAPI";
-import data from "./NotificationData";
+import data from "./components/NotificationData";
 import * as Yup from "yup";
 // editor for content
 import { Editor } from "@tinymce/tinymce-react";
@@ -44,7 +45,7 @@ const CreateNotification = () => {
       faculty: "",
       notificationGroupCode: "",
     },
-    validationSchema: Yup.object({
+    validationSchema: Yup.object({      //checked---------------------
       title: Yup.string()
         .max(150, "'Tiêu đề' không quá 150 kí tự")
         .min(2, "'Tiêu đề' ít nhất 2 kí tự")
@@ -61,22 +62,22 @@ const CreateNotification = () => {
     onSubmit: (valuesForm) => {
       setLoading(true);
       setOnSubmit(valuesForm);
+      alert(JSON.stringify(valuesForm,null,2));
+
     },
   });
   const handleEdittor = (e) => {
     setEditor(e);
     formik.setFieldValue("content", e);
   };
+  // const key = ['title','content','shortDescription','faculty','notificationGroupCode','notificationTo','schoolYear','thumbnailFile']
+
   useEffect(() => {
     (async () => {
       try {
-        const result1 = await NotificationGroupAPI.getNotificationGroupAll(
-          true
-        );
-        const result2 = await NotificationAPI.getNotificationIdAPI(1);
+        const result1 = await NotificationGroupAPI.getNotificationGroupAll(true);
         setNotificationGroup(result1.data);
-        setNotificationIP(result2.data);
-        // console.log(result2.data);
+        // console.log(result1.data);
       } catch (e) {
         console.log(e.message);
         toast.error("Có lỗi xảy ra, kiểm tra lại đường truyền", {
@@ -88,6 +89,7 @@ const CreateNotification = () => {
     })();
     if (loading === true && onSubmited) {
       const formData = new FormData();
+
       formData.append("notifyRequestDtoJson", {
         title: onSubmited?.title,
         content: onSubmited?.content,
@@ -99,14 +101,20 @@ const CreateNotification = () => {
         classCodes: ["CCQ1911C"],
       });
 
-      formData.append("file", "null");
+
+      // formData.append("file", "null");
+      console.log(onSubmited.JSON());
       // Display the key/value pairs
-      for (var pair of formData.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
+      for (const pair of formData) {
+        console.log(pair[0], pair[1]);
       }
       (async () => {
         try {
-          const response = await NotificationAPI.postNotificationAPI(formData);
+
+          const response = await NotificationAPI.postNotificationAPI(formData);// pause test
+          console.log(2);
+
+          console.log(response.status);
           if (response.status === 200) {
             setLoading(false);
             toast.success("Tạo thông báo thành công", {
@@ -471,3 +479,37 @@ const CreateNotification = () => {
 };
 
 export default CreateNotification;
+
+// import React from 'react';
+// import { Formik } from 'formik';
+ 
+//  const BasicExample = () => (
+//    <div>
+//    <h1>My Form</h1>
+//    <Formik
+//      initialValues={{ name: 'jared' }}
+//      onSubmit={(values, actions) => {
+//        setTimeout(() => {
+//          alert(JSON.stringify(values, null, 2));
+//          actions.setSubmitting(false);
+//        }, 1000);
+//      }}
+//    >
+//      {props => (
+//        <form onSubmit={props.handleSubmit}>
+//          <input
+//            type="text"
+//            onChange={props.handleChange}
+//            onBlur={props.handleBlur}
+//            value={props.values.name}
+//            name="name"
+//          />
+//          {props.errors.name && <div id="feedback">{props.errors.name}</div>}
+//          <button type="submit">Submit</button>
+//        </form>
+//      )}
+//    </Formik>
+//  </div>
+//  );
+// export default BasicExample;
+
